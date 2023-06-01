@@ -1,4 +1,4 @@
-Feature: To handle dropdowns
+Feature: To handle static and dynamic
 
   @StaticDropdown
   Scenario: To handle the static dropdown
@@ -34,4 +34,4 @@ Feature: To handle dropdowns
      @cal
   Scenario: Calander
     Given user navigates to URL
-    When Handle Calender
+
