@@ -19,13 +19,11 @@ public class BrowserBase {
         Properties prob = new Properties();
         prob.load(fis);
 
-        switch (prob.getProperty("browser")){
+        switch (prob.getProperty("browser").toLowerCase()){
             case "chrome":
-            case "CHROME":
                 driver = new ChromeDriver();
                 break;
             case "edge":
-            case "EDGE":
                 driver = new EdgeDriver();
                 break;
             default:
