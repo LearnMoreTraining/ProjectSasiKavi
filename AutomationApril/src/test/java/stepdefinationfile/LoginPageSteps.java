@@ -18,6 +18,8 @@ import resusable.BrowserBase;
 
 import java.io.IOException;
 import java.time.Duration;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.NoSuchElementException;
 
 public class LoginPageSteps {
@@ -88,13 +90,27 @@ public class LoginPageSteps {
   public void iterateTheStaticDropdownValues() {
 
   currencyElement = driver.findElement(By.id("ControlGroupSearchView_AvailabilitySearchInputSearchView_DropDownListCurrency"));
-   int currencySize = currencyElement.findElements(By.tagName("option")).size();
 
-    for(int i=0; i<currencySize;i++){
+  List<WebElement> currency = currencyElement.findElements(By.tagName("option"));
 
-      String value =currencyElement.findElements(By.tagName("option")).get(i).getText();
-      System.out.println(value);
-    }
+  List<String> currencyVal = new ArrayList<>();
+  for (WebElement e:currency){
+    currencyVal.add(e.getText());
+  }
+    System.out.println(currencyVal);
+
+  for(String q:currencyVal){
+    System.out.println(q);
+  }
+
+//  int currencySize = currencyElement.findElements(By.tagName("option")).size();
+//
+//    for(int i=0; i<currencySize;i++){
+//
+//      String value =currencyElement.findElements(By.tagName("option")).get(i).getText();
+//      System.out.println(value);
+//    }
+
 
   }
 
