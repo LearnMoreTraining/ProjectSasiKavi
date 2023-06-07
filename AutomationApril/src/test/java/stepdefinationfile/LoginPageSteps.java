@@ -18,9 +18,7 @@ import resusable.BrowserBase;
 
 import java.io.IOException;
 import java.time.Duration;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.NoSuchElementException;
+import java.util.*;
 
 public class LoginPageSteps {
 
@@ -174,20 +172,27 @@ public class LoginPageSteps {
 
     WebElement ctsTable = driver.findElement(By.xpath("//table[@class='infobox vcard']"));
 
-    int colunmOneType=ctsTable.findElements(By.tagName("th")).size();
+    List<WebElement> c1 = ctsTable.findElements(By.tagName("th"));
+    List <String> c1value = new ArrayList<String>();
+    for (WebElement e:c1){
+      c1value.add(e.getText());
+    }
 
+
+   int colunmOneType=ctsTable.findElements(By.tagName("th")).size();
             for(int i=0;i<colunmOneType;i++){
 
               String val=ctsTable.findElements(By.tagName("th")).get(i).getText();
               System.out.println(val);
             }
     int colunmTwoType=ctsTable.findElements(By.tagName("td")).size();
-
-    for(int i=0;i<colunmTwoType;i++){
-
-      String val=ctsTable.findElements(By.tagName("td")).get(i).getText();
-      System.out.println(val);
+            List<String> c2Value = new ArrayList<>();
+    for(int i=1;i<colunmTwoType;i++){
+      c2Value.add(ctsTable.findElements(By.tagName("td")).get(i).getText());
     }
+
+    Map<List, List> mapping = new HashMap<List, List>();
+    mapping.put(c1value,c2Value);
 
     WebElement tab= driver.findElement(By.cssSelector(".wikitable.sortable.jquery-tablesorter"));
 
