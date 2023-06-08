@@ -12,8 +12,10 @@ import java.time.Duration;
 import java.util.Properties;
 
 public class BrowserBase {
-    WebDriver driver; //driver property
-    public WebDriver browserBaseCode() throws IOException {
+
+  static public ThreadLocal<WebDriver> threadLocal = new ThreadLocal<>();
+
+    public static WebDriver browserBaseCode() throws IOException {
         String systemPath =System.getProperty("user.dir");
         FileInputStream fis = new FileInputStream(new File(systemPath+"\\src\\main\\resources\\configuration\\browserconfig.properties"));
         Properties prob = new Properties();
@@ -21,22 +23,27 @@ public class BrowserBase {
 
         switch (prob.getProperty("browser").toLowerCase()){
             case "chrome":
-                driver = new ChromeDriver();
+              threadLocal.set(new ChromeDriver());
                 break;
             case "edge":
-                driver = new EdgeDriver();
+                threadLocal.set(new EdgeDriver());
                 break;
             default:
                 throw new InvalidArgumentException("Enter the valid browser name");
 
         }
-        driver.get(prob.getProperty("url"));
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+        getDriver().get(prob.getProperty("url"));
+        getDriver().manage().window().maximize();
+        getDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
 
-        return driver;
+        return getDriver();
     }
 
+    public static WebDriver getDriver(){
+
+
+        return  threadLocal.get();
+    }
 
 
 

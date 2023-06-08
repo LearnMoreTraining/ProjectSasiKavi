@@ -11,7 +11,7 @@ import org.junit.runner.RunWith;
 
         features = {"src/test/resources/featurefile"},
         glue = {"stepdefinationfile"},
-        tags = "@StaticDropdown"
+        tags = "@TSC001"
 
 
 )
