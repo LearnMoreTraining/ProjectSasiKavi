@@ -8,6 +8,7 @@ public class HomePage extends BrowserBase {
     //---------Locators--------------
    static By productSearch = By.id("twotabsearchtextbox");
    static By signInButton = By.id("nav-link-accountList-nav-line-1");
+   static By searchButton = By.id("nav-search-submit-button");
 
    //--------methods---------
     public static void searchProduct(String searchInput){
@@ -19,6 +20,10 @@ public class HomePage extends BrowserBase {
     public static void naviagteToSignInPage(){
 
         getDriver().findElement(signInButton).click();
+    }
+
+    public static void clickSearchButton(){
+        getDriver().findElement(searchButton).click();
     }
 
 

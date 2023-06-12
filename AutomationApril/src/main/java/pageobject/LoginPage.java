@@ -7,7 +7,6 @@ import resusable.BrowserBase;
 public class LoginPage extends BrowserBase {
 
     //locotors
-
     static By userNametextBox = By.id("ap_email");
     static By continueButton = By.id("continue");
 
